@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <title>TEST</title>
+        <script>
+            window.onload = function() {
+                clearInputs()
+            }
+            
+            function clearInputs() {
+                document.getElementById('dni').value = ''
+                document.getElementById('name').value = ''
+                document.getElementById('surname').value = ''
+                document.getElementById('dni2').value = ''
+                document.getElementById('name2').value = ''
+                document.getElementById('surname2').value = ''
+                document.getElementById('dni').focus()
+            }
+
+            function add() {
+                var row = document.getElementById('tbody').insertRow()
+                var dni = document.getElementById('dni').value
+                row.setAttribute('id', 'fila_' + dni)
+                var cell = row.insertCell()
+                cell.innerHTML = document.getElementById('dni').value
+                cell = row.insertCell()
+                cell.innerHTML = document.getElementById('name').value
+                cell = row.insertCell()
+                cell.innerHTML = document.getElementById('surname').value
+                cell = row.insertCell()
+                cell.innerHTML = '<button onclick="updateRow(fila_' + dni + ')">UPDATE</delete>'
+                cell = row.insertCell()
+                cell.innerHTML = '<button onclick="removeRow(fila_' + dni + ')">DELETE</delete>'
+                clearInputs()
+            }
+
+            function removeRow(fila){
+                fila.remove()
+            }
+
+            function updateRow(fila){
+                document.getElementById('dni2').value = fila.childElement[0].innerHTML
+                document.getElementById('name2').value = fila.childElement[1].innerHTML
+                document.getElementById('surname2').value = fila.childElement[2].innerHTML
+            }
+        </script>
+    </head>
+    <body>
+        <table style="border: 1px solid">
+            <thead>
+                <tr>
+                    <td>DNI</td>
+                    <td>NAME</td>
+                    <td>SURNAME</td>
+                    <td></td> /* colspan "2" */
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td><input id="dni"/></td>
+                    <td><input id="name"/></td>
+                    <td><input id="surname"/></td>
+                    <td><button onclick="add()">ADD</button></td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div>
+            <input id="dni2" readonly/></td>
+            <input id="name2"/></td>
+            <input id="surname2"/></td>
+            <button onclick="modify()">UPDATE</button></td>
+            <td>
+
+            </td>
+        </div>
+    </body>
+</html>
